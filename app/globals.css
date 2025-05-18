@@ -98,7 +98,7 @@ body {
   animation: typing 3.5s steps(40, end) forwards, blink .75s step-end infinite;
 }
 
-/* Marquee styles - updated for better spacing */
+/* Marquee styles */
 .marquee {
   overflow: hidden;
   white-space: nowrap;
@@ -108,22 +108,11 @@ body {
 
 .marquee-content {
   display: inline-block;
-  animation: marquee 30s linear infinite;
-  padding-right: 50px; /* Add padding to prevent overlap */
+  animation: marquee 20s linear infinite;
+  padding-right: 50px;
 }
 
 .marquee-content:hover {
-  animation-play-state: paused;
-}
-
-.marquee-content-duplicate {
-  display: inline-block;
-  animation: marquee 30s linear infinite;
-  animation-delay: 15s;
-  padding-right: 50px; /* Add padding to prevent overlap */
-}
-
-.marquee-content-duplicate:hover {
   animation-play-state: paused;
 }
 

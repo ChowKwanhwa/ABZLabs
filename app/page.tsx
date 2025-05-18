@@ -153,44 +153,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="marquee-content-duplicate">
-            <div className="flex items-center px-8">
-              {/* Fixed spacing between logos */}
-              <div className="grayscale hover:grayscale-0 transition mx-12">
-                <Image src="/logo-ton.png" alt="TON logo" width={80} height={40} className="h-8 object-contain" />
-              </div>
-              <div className="grayscale hover:grayscale-0 transition mx-12">
-                <Image src="/logo-circle.png" alt="CIRCLE logo" width={80} height={40} className="h-8 object-contain" />
-              </div>
-              <div className="grayscale hover:grayscale-0 transition mx-12">
-                <Image
-                  src="/logo-binance.png"
-                  alt="BINANCE logo"
-                  width={80}
-                  height={40}
-                  className="h-8 object-contain"
-                />
-              </div>
-              <div className="grayscale hover:grayscale-0 transition mx-12">
-                <Image src="/logo-jump.png" alt="JUMP logo" width={80} height={40} className="h-8 object-contain" />
-              </div>
-              <div className="grayscale hover:grayscale-0 transition mx-12">
-                <Image
-                  src="/logo-magic-eden.png"
-                  alt="MAGIC EDEN logo"
-                  width={80}
-                  height={40}
-                  className="h-8 object-contain"
-                />
-              </div>
-              <div className="grayscale hover:grayscale-0 transition mx-12">
-                <Image src="/logo-meta.png" alt="META logo" width={80} height={40} className="h-8 object-contain" />
-              </div>
-              <div className="grayscale hover:grayscale-0 transition mx-12">
-                <Image src="/logo-stripe.png" alt="STRIPE logo" width={80} height={40} className="h-8 object-contain" />
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
