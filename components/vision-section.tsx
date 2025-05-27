@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
+interface VisionSectionProps {
+  visionTransform: number
+}
+
 export default function VisionSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [typewriterText1, setTypewriterText1] = useState("")
@@ -97,14 +101,15 @@ export default function VisionSection() {
             </div>
           </div>
 
-          <div className={`flex justify-center scroll-reveal ${isVisible ? "revealed" : ""}`}>
-            <div className="w-80 h-80 relative animate-float animation-delay-600">
+          <div className={`flex justify-center items-center scroll-reveal ${isVisible ? "revealed" : ""}`}>
+            <div className="w-[400px] h-[400px] relative animate-float animation-delay-600">
               <Image
                 src="/images/vault.png"
                 alt="Vault with Golden Coins"
-                width={320}
-                height={320}
+                width={400}
+                height={400}
                 className="object-contain hover-scale"
+                priority
               />
             </div>
           </div>

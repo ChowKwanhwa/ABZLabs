@@ -45,21 +45,39 @@ export default function ServicesSection({ servicesOpacity, servicesTransform }: 
         transform: `translateY(${servicesTransform}px)`,
       }}
     >
-      <section className="px-6 py-24 max-w-7xl mx-auto min-h-screen">
-        <h2 className="text-4xl font-bold text-center text-[#333333] mb-20 scroll-reveal animate-fade-in-up">
+      <section 
+        className="px-6 py-24 max-w-7xl mx-auto min-h-screen flex flex-col transition-all duration-500"
+        style={{
+          height: servicesTransform < -100 ? '60vh' : '100vh',
+          padding: servicesTransform < -100 ? '1rem 1.5rem' : '2rem 1.5rem',
+        }}
+      >
+        <h2 
+          className="font-bold text-center text-[#333333] scroll-reveal animate-fade-in-up transition-all duration-500"
+          style={{
+            fontSize: servicesTransform < -100 ? '1.5rem' : '1.875rem',
+            marginBottom: servicesTransform < -100 ? '1rem' : '1.5rem',
+          }}
+        >
           Our Services
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 flex-1">
           {services.map((service, index) => (
             <Card
               key={index}
-              className={`p-12 bg-white border border-[#e1e1e5] shadow-lg rounded-lg hover-lift scroll-reveal animate-scale-in ${service.delay}`}
+              className={`bg-white border border-[#e1e1e5] shadow-lg rounded-lg hover-lift scroll-reveal animate-scale-in transition-all duration-500 ${service.delay}`}
+              style={{
+                padding: servicesTransform < -100 ? '1.5rem' : '2.5rem',
+              }}
             >
               <CardContent className="p-0 text-center">
                 <div
-                  className="w-48 h-48 mx-auto mb-8 flex items-center justify-center bg-cover bg-center bg-no-repeat rounded-full shadow-md animate-float icon-bounce"
+                  className="mx-auto flex items-center justify-center bg-cover bg-center bg-no-repeat rounded-full shadow-md animate-float icon-bounce transition-all duration-500"
                   style={{
+                    width: servicesTransform < -100 ? '4rem' : '8rem',
+                    height: servicesTransform < -100 ? '4rem' : '8rem',
+                    marginBottom: servicesTransform < -100 ? '1rem' : '1.5rem',
                     backgroundImage: "url('/images/icon-bg.png')",
                     animationDelay: `${index * 0.5}s`,
                   }}
@@ -67,11 +85,34 @@ export default function ServicesSection({ servicesOpacity, servicesTransform }: 
                   <img
                     src={service.icon || "/placeholder.svg"}
                     alt={service.title}
-                    className="w-36 h-36 object-contain"
+                    className="object-contain transition-all duration-500"
+                    style={{
+                      width: servicesTransform < -100 ? '2.75rem' : '5.5rem',
+                      height: servicesTransform < -100 ? '2.75rem' : '5.5rem',
+                    }}
                   />
                 </div>
-                <h3 className="text-xl font-bold text-[#333333] mb-4">{service.title}</h3>
-                <p className="text-[#666666] text-sm leading-relaxed">{service.description}</p>
+                <h3 
+                  className="font-bold text-[#333333] transition-all duration-500" 
+                  style={{ 
+                    fontSize: servicesTransform < -100 ? '1rem' : '1.5rem',
+                    marginBottom: servicesTransform < -100 ? '0.75rem' : '1rem',
+                  }}
+                >
+                  {service.title}
+                </h3>
+                <p 
+                  className="text-[#666666] leading-relaxed transition-all duration-500"
+                  style={{ 
+                    fontSize: servicesTransform < -100 ? '0.875rem' : '1rem',
+                    WebkitLineClamp: servicesTransform < -100 ? 2 : 4,
+                    display: '-webkit-box',
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {service.description}
+                </p>
               </CardContent>
             </Card>
           ))}

@@ -122,7 +122,7 @@ export default function Component() {
       <ServicesSection servicesOpacity={servicesOpacity} servicesTransform={servicesTransform} />
 
       {/* Spacer to create scroll space for all phases */}
-      <div className="h-[300vh]"></div>
+      <div style={{ height: `${windowHeight * 3}px` }}></div>
 
       {/* Our Vision - Normal flow after all animations */}
       <VisionSection />
