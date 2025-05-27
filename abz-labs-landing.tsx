@@ -100,9 +100,12 @@ export default function Component() {
         ? Math.min(scrollY / phase1End, 1) // Sliding in
         : 0 // Immediately disappear after phase2End
 
-  // Services appear immediately when video disappears
+  // Services appear and move based on scroll position
   const servicesOpacity = scrollY >= phase2End ? 1 : 0
-  const servicesTransform = scrollY >= phase2End ? 0 : 50
+  const servicesTransform = scrollY >= phase2End ? -Math.max(0, scrollY - (phase2End + windowHeight)) : 50
+
+  // Calculate vision progress (0 to 1) as vision section comes into view
+  const visionProgress = Math.min(Math.max((scrollY - phase3End) / windowHeight, 0), 1)
 
   return (
     <div className={`relative transition-opacity duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
@@ -119,7 +122,7 @@ export default function Component() {
       <VideoSection ref={videoRef} videoOpacity={videoOpacity} videoTransformPhase1={videoTransformPhase1} />
 
       {/* Our Services - Appears immediately when video disappears */}
-      <ServicesSection servicesOpacity={servicesOpacity} servicesTransform={servicesTransform} />
+      <ServicesSection servicesOpacity={servicesOpacity} servicesTransform={servicesTransform} visionProgress={visionProgress} />
 
       {/* Spacer to create scroll space for all phases */}
       <div style={{ height: `${windowHeight * 3}px` }}></div>

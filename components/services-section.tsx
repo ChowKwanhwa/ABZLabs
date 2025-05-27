@@ -3,9 +3,13 @@ import { Card, CardContent } from "@/components/ui/card"
 interface ServicesSectionProps {
   servicesOpacity: number
   servicesTransform: number
+  visionProgress: number
 }
 
-export default function ServicesSection({ servicesOpacity, servicesTransform }: ServicesSectionProps) {
+export default function ServicesSection({ servicesOpacity, servicesTransform, visionProgress = 0 }: ServicesSectionProps) {
+  // Calculate opacity based on vision progress
+  const sectionOpacity = Math.max(0, 1 - visionProgress * 1.5); // Fade out faster than the scroll
+
   const services = [
     {
       icon: "/images/icons/flower.png",
@@ -45,79 +49,84 @@ export default function ServicesSection({ servicesOpacity, servicesTransform }: 
         transform: `translateY(${servicesTransform}px)`,
       }}
     >
-      <section 
-        className="px-6 py-24 max-w-7xl mx-auto min-h-screen flex flex-col transition-all duration-500"
-        style={{
-          height: servicesTransform < -100 ? '60vh' : '100vh',
-          padding: servicesTransform < -100 ? '1rem 1.5rem' : '2rem 1.5rem',
-        }}
+      <div 
+        className="relative py-16 overflow-hidden transition-opacity duration-300"
+        style={{ opacity: sectionOpacity }}
       >
-        <h2 
-          className="font-bold text-center text-[#333333] scroll-reveal animate-fade-in-up transition-all duration-500"
+        <div 
+          className="px-6 py-24 max-w-7xl mx-auto min-h-screen flex flex-col transition-all duration-500"
           style={{
-            fontSize: servicesTransform < -100 ? '1.5rem' : '1.875rem',
-            marginBottom: servicesTransform < -100 ? '1rem' : '1.5rem',
+            height: servicesTransform < -100 ? '60vh' : '100vh',
+            padding: servicesTransform < -100 ? '1rem 1.5rem' : '2rem 1.5rem',
           }}
         >
-          Our Services
-        </h2>
+          <h2 
+            className="font-bold text-center text-[#333333] scroll-reveal animate-fade-in-up transition-all duration-500"
+            style={{
+              fontSize: servicesTransform < -100 ? '1.5rem' : '1.875rem',
+              marginBottom: servicesTransform < -100 ? '1rem' : '1.5rem',
+            }}
+          >
+            Our Services
+          </h2>
 
-        <div className="grid md:grid-cols-2 gap-8 flex-1">
-          {services.map((service, index) => (
-            <Card
-              key={index}
-              className={`bg-white border border-[#e1e1e5] shadow-lg rounded-lg hover-lift scroll-reveal animate-scale-in transition-all duration-500 ${service.delay}`}
-              style={{
-                padding: servicesTransform < -100 ? '1.5rem' : '2.5rem',
-              }}
-            >
-              <CardContent className="p-0 text-center">
-                <div
-                  className="mx-auto flex items-center justify-center bg-cover bg-center bg-no-repeat rounded-full shadow-md animate-float icon-bounce transition-all duration-500"
-                  style={{
-                    width: servicesTransform < -100 ? '4rem' : '8rem',
-                    height: servicesTransform < -100 ? '4rem' : '8rem',
-                    marginBottom: servicesTransform < -100 ? '1rem' : '1.5rem',
-                    backgroundImage: "url('/images/icon-bg.png')",
-                    animationDelay: `${index * 0.5}s`,
-                  }}
-                >
-                  <img
-                    src={service.icon || "/placeholder.svg"}
-                    alt={service.title}
-                    className="object-contain transition-all duration-500"
+          <div className="grid md:grid-cols-2 gap-8 flex-1">
+            {services.map((service, index) => (
+              <Card
+                key={index}
+                className={`bg-white border border-[#e1e1e5] shadow-lg rounded-lg hover-lift scroll-reveal animate-scale-in transition-all duration-500 ${service.delay}`}
+                style={{
+                  padding: servicesTransform < -100 ? '1.5rem' : '2.5rem',
+                }}
+              >
+                <CardContent className="p-0 text-center">
+                  <div
+                    className="mx-auto flex items-center justify-center bg-cover bg-center bg-no-repeat rounded-full shadow-md animate-float icon-bounce transition-all duration-500"
                     style={{
-                      width: servicesTransform < -100 ? '2.75rem' : '5.5rem',
-                      height: servicesTransform < -100 ? '2.75rem' : '5.5rem',
+                      width: servicesTransform < -100 ? '4rem' : '8rem',
+                      height: servicesTransform < -100 ? '4rem' : '8rem',
+                      marginBottom: servicesTransform < -100 ? '1rem' : '1.5rem',
+                      backgroundImage: "url('/images/icon-bg.png')",
+                      animationDelay: `${index * 0.5}s`,
                     }}
-                  />
-                </div>
-                <h3 
-                  className="font-bold text-[#333333] transition-all duration-500" 
-                  style={{ 
-                    fontSize: servicesTransform < -100 ? '1rem' : '1.5rem',
-                    marginBottom: servicesTransform < -100 ? '0.75rem' : '1rem',
-                  }}
-                >
-                  {service.title}
-                </h3>
-                <p 
-                  className="text-[#666666] leading-relaxed transition-all duration-500"
-                  style={{ 
-                    fontSize: servicesTransform < -100 ? '0.875rem' : '1rem',
-                    WebkitLineClamp: servicesTransform < -100 ? 2 : 4,
-                    display: '-webkit-box',
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {service.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+                  >
+                    <img
+                      src={service.icon || "/placeholder.svg"}
+                      alt={service.title}
+                      className="object-contain transition-all duration-500"
+                      style={{
+                        width: servicesTransform < -100 ? '2.75rem' : '5.5rem',
+                        height: servicesTransform < -100 ? '2.75rem' : '5.5rem',
+                      }}
+                    />
+                  </div>
+                  <h3 
+                    className="font-bold text-[#333333] transition-all duration-500" 
+                    style={{ 
+                      fontSize: servicesTransform < -100 ? '1rem' : '1.5rem',
+                      marginBottom: servicesTransform < -100 ? '0.75rem' : '1rem',
+                    }}
+                  >
+                    {service.title}
+                  </h3>
+                  <p 
+                    className="text-[#666666] leading-relaxed transition-all duration-500"
+                    style={{ 
+                      fontSize: servicesTransform < -100 ? '0.875rem' : '1rem',
+                      WebkitLineClamp: servicesTransform < -100 ? 2 : 4,
+                      display: '-webkit-box',
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    {service.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   )
 }

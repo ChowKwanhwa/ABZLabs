@@ -63,13 +63,13 @@ export default function VisionSection() {
   return (
     <section
       ref={sectionRef}
-      className="px-6 py-16 bg-cover bg-center bg-no-repeat relative z-20"
+      className="px-6 py-16 bg-cover bg-center bg-no-repeat relative"
       style={{
         backgroundImage: "url('/images/bg.png')",
       }}
     >
       {/* Blue overlay */}
-      <div className="absolute inset-0 bg-blue-600/70"></div>
+      <div className="absolute inset-0 bg-blue-600/70 z-0"></div>
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div className={`scroll-reveal ${isVisible ? "revealed" : ""}`}>
@@ -101,15 +101,23 @@ export default function VisionSection() {
             </div>
           </div>
 
-          <div className={`flex justify-center items-center scroll-reveal ${isVisible ? "revealed" : ""}`}>
-            <div className="w-[400px] h-[400px] relative animate-float animation-delay-600">
-              <Image
+          <div className="relative min-h-[500px] scroll-reveal">
+            <div className="absolute inset-0 flex items-center justify-center z-[100]">
+              <img
                 src="/images/vault.png"
                 alt="Vault with Golden Coins"
-                width={400}
-                height={400}
-                className="object-contain hover-scale"
-                priority
+                style={{
+                  width: '500px',
+                  height: '500px',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.2))',
+
+                }}
+                onError={(e) => {
+                  console.error('Image failed to load');
+                  console.error(e);
+                }}
+                onLoad={() => console.log('Image loaded successfully')}
               />
             </div>
           </div>
